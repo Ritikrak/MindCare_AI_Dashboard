@@ -12,8 +12,44 @@ const meterValue = document.getElementById('meter-value');
 const meterTrack = document.querySelector('.meter-track');
 const scoreRing = document.getElementById('score-ring');
 const headerStatusLabel = headerStatus.querySelector('.status-label');
+const visitorCount = document.getElementById('visitor-count');
 
 const API_BASE_URL = 'https://mindcare-ai-dashboard.onrender.com';
+
+const updateVisitorCount = async () => {
+  try {
+    let visitorId = localStorage.getItem('mindcare-visitor-id');
+    if (!visitorId) {
+      const randomBytes = crypto.getRandomValues(new Uint8Array(16));
+      randomBytes[6] = (randomBytes[6] & 0x0f) | 0x40;
+      randomBytes[8] = (randomBytes[8] & 0x3f) | 0x80;
+      const hex = Array.from(randomBytes, (byte) => byte.toString(16).padStart(2, '0')).join('');
+      visitorId = `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20)}`;
+      localStorage.setItem('mindcare-visitor-id', visitorId);
+    }
+
+    const response = await fetch(`${API_BASE_URL}/api/visitor-count`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ visitor_id: visitorId })
+    });
+
+    if (!response.ok) {
+      throw new Error('Could not load the visitor count.');
+    }
+
+    const result = await response.json();
+    const count = Number(result.unique_visitors);
+    if (!Number.isSafeInteger(count) || count < 0) {
+      throw new Error('The visitor count response was invalid.');
+    }
+
+    visitorCount.textContent = count.toLocaleString();
+  } catch (error) {
+    visitorCount.textContent = 'Unavailable';
+    visitorCount.title = error instanceof Error ? error.message : 'Visitor count could not be loaded.';
+  }
+};
 
 const getInterpretation = (score) => {
   if (score < 4) {
@@ -135,3 +171,5 @@ form.addEventListener('submit', async (event) => {
     buttonLabel.textContent = 'Generate my wellbeing insight';
   }
 });
+
+updateVisitorCount();

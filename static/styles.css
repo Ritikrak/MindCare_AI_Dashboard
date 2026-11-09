@@ -903,6 +903,25 @@ input::placeholder {
   font-weight: 700;
 }
 
+.visitor-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.visitor-count svg {
+  width: 16px;
+  height: 16px;
+  color: #7770c6;
+}
+
+.visitor-count strong {
+  color: #5550a8;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+
 .footer-separator {
   margin: 0 4px;
   color: #bbbcc8;
@@ -1237,9 +1256,6 @@ input::placeholder {
     font-size: 0.64rem;
   }
 
-  .footer-credit {
-    order: 3;
-  }
 }
 
 @media (max-width: 360px) {

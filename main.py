@@ -1,6 +1,11 @@
+import hashlib
+import os
+import sqlite3
+from contextlib import closing
 from functools import lru_cache
 from pathlib import Path
 from typing import Literal
+from uuid import UUID
 
 import joblib
 from fastapi import FastAPI
@@ -12,6 +17,9 @@ from pydantic import BaseModel, Field
 app = FastAPI()
 BASE_DIR = Path(__file__).resolve().parent
 MODEL_PATH = BASE_DIR / "Mental_Health_Model.pkl"
+VISITOR_DB_PATH = Path(
+    os.environ.get("MINDCARE_VISITOR_DB", BASE_DIR / "mindcare_visitors.sqlite3")
+)
 
 app.add_middleware(
     CORSMiddleware,
@@ -52,6 +60,10 @@ class StudentData(BaseModel):
     stress_level: Literal["Medium", "Low", "Very High", "High"]
 
 
+class VisitorRequest(BaseModel):
+    visitor_id: UUID
+
+
 @lru_cache(maxsize=1)
 def load_model():
     if not MODEL_PATH.exists():
@@ -67,6 +79,32 @@ def serve_ui():
 @app.get("/favicon.ico", include_in_schema=False)
 def serve_favicon():
     return FileResponse(BASE_DIR / "static" / "favicon.svg", media_type="image/svg+xml")
+
+
+@app.post("/api/visitor-count")
+def visitor_count(data: VisitorRequest):
+    visitor_hash = hashlib.sha256(str(data.visitor_id).encode("utf-8")).hexdigest()
+    VISITOR_DB_PATH.parent.mkdir(parents=True, exist_ok=True)
+
+    with closing(sqlite3.connect(VISITOR_DB_PATH, timeout=10)) as connection:
+        with connection:
+            connection.execute(
+                """
+                CREATE TABLE IF NOT EXISTS unique_visitors (
+                    visitor_hash TEXT PRIMARY KEY,
+                    first_seen_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+                )
+                """
+            )
+            connection.execute(
+                "INSERT OR IGNORE INTO unique_visitors (visitor_hash) VALUES (?)",
+                (visitor_hash,),
+            )
+            total = connection.execute(
+                "SELECT COUNT(*) FROM unique_visitors"
+            ).fetchone()[0]
+
+    return {"unique_visitors": total}
 
 
 @app.post("/predict")
