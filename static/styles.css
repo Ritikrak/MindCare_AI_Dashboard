@@ -888,9 +888,19 @@ input::placeholder {
 }
 
 .footer-heart {
-  margin-right: 4px;
-  color: #a07dd0;
-  font-size: 0.72rem;
+  margin: 0 2px;
+  color: #d66b86;
+  font-size: 0.82rem;
+  vertical-align: -0.02em;
+}
+
+.footer-credit {
+  white-space: nowrap;
+}
+
+.footer-credit strong {
+  color: #5550a8;
+  font-weight: 700;
 }
 
 .footer-separator {
@@ -1225,6 +1235,10 @@ input::placeholder {
     gap: 7px;
     padding: 17px 2px 5px;
     font-size: 0.64rem;
+  }
+
+  .footer-credit {
+    order: 3;
   }
 }
 
