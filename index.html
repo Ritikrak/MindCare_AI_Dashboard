@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f6f7fc" />
+    <meta name="description" content="A thoughtful student wellbeing dashboard powered by machine learning." />
+    <title>MindCare AI — Student Wellbeing</title>
+    <link rel="icon" type="image/svg+xml" href="/static/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="MindCare AI home">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none">
+              <path d="M16 25.8S5.2 19.5 5.2 11.9a5.8 5.8 0 0 1 10.1-3.8 5.8 5.8 0 0 1 10.1 3.8c0 7.6-9.4 13.2-9.4 13.9Z" fill="currentColor" opacity=".96"/>
+              <path d="M8.8 16h4l2-4.1 3.1 8 2-3.9h3.4" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span class="brand-name">mindcare<span>AI</span></span>
+        </a>
+
+        <div class="topbar-right">
+          <span class="privacy-note">
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M10 2.5 3.8 5v4.3c0 4 2.6 6.8 6.2 8.2 3.6-1.4 6.2-4.2 6.2-8.2V5L10 2.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+              <path d="m7.4 10 1.7 1.7 3.7-3.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Private &amp; secure
+          </span>
+          <span class="status-pill" id="header-status" data-state="ready">
+            <span class="status-dot" aria-hidden="true"></span>
+            <span class="status-label">Ready</span>
+          </span>
+        </div>
+      </header>
+
+      <main>
+        <section class="welcome-banner" aria-labelledby="welcome-title">
+          <div class="welcome-copy">
+            <span class="welcome-eyebrow"><span class="eyebrow-line"></span> YOUR WELLBEING, IN FOCUS</span>
+            <h1 id="welcome-title">A little more insight.<br /><span>A lot more balance.</span></h1>
+            <p>Explore how everyday habits shape student wellbeing. Share a few details to get a thoughtful, machine-learning-powered estimate.</p>
+            <a class="welcome-link" href="#profile-form">
+              Start your check-in
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4.2 10h11.6m-4.8-4.8 4.8 4.8-4.8 4.8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+
+          <div class="hero-art" aria-hidden="true">
+            <div class="hero-orbit orbit-one"></div>
+            <div class="hero-orbit orbit-two"></div>
+            <div class="hero-sun"></div>
+            <div class="hero-leaf leaf-left"></div>
+            <div class="hero-leaf leaf-right"></div>
+            <div class="hero-card-float">
+              <span class="float-icon">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M3 12h4l2.2-5 4.1 10 2.3-5H21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              <span><strong>Small steps</strong><small>make a difference</small></span>
+              <span class="float-sparkle">✳</span>
+            </div>
+            <div class="hero-center">
+              <svg viewBox="0 0 190 190" fill="none">
+                <circle cx="95" cy="95" r="87" fill="url(#orb)" />
+                <path d="M42 127c7-23 23-35 47-35s40 12 47 35" fill="#FFF" fill-opacity=".92"/>
+                <path d="M61 79c0-22 14-37 34-37 21 0 34 15 34 37v11c0 20-15 35-34 35S61 110 61 90V79Z" fill="#F6CBB9"/>
+                <path d="M58 78c0-26 15-43 39-43 22 0 37 16 37 40-8-3-15-10-19-18-11 13-27 20-50 21v10h-7V78Z" fill="#403B68"/>
+                <path d="M77 82h.2m33 0h.2" stroke="#403B68" stroke-width="3.2" stroke-linecap="round"/>
+                <path d="M88 99c5 4 10 4 15 0" stroke="#C67569" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M48 143c15-12 30-18 47-18s33 6 47 18v15H48v-15Z" fill="#857CE8"/>
+                <path d="M74 126c5 8 12 12 21 12s16-4 21-12" stroke="#FFF" stroke-width="4" stroke-linecap="round"/>
+                <defs><linearGradient id="orb" x1="25" y1="19" x2="165" y2="171" gradientUnits="userSpaceOnUse"><stop stop-color="#DCD9FF"/><stop offset="1" stop-color="#E9F7F1"/></linearGradient></defs>
+              </svg>
+            </div>
+            <span class="art-sparkle sparkle-one">✦</span>
+            <span class="art-sparkle sparkle-two">✳</span>
+            <span class="art-dot dot-one"></span>
+            <span class="art-dot dot-two"></span>
+          </div>
+          <div class="banner-caption"><span class="caption-dot"></span> A gentle check-in, just for you</div>
+        </section>
+
+        <div class="dashboard">
+          <section class="panel form-panel" id="profile-form" aria-labelledby="form-title">
+            <div class="section-heading">
+              <div class="heading-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm7 8a7 7 0 0 0-14 0m14-9a3 3 0 0 0-1.5-5.6m4.5 14a6 6 0 0 0-3.5-5.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+              </div>
+              <div>
+                <p class="section-kicker">A MOMENT FOR YOU</p>
+                <h2 id="form-title">Your student profile</h2>
+                <p class="section-description">A few everyday details help us build a more complete picture.</p>
+              </div>
+            </div>
+
+            <form id="prediction-form" class="form-grid">
+              <div class="form-section-label"><span>About you</span><span class="form-section-line"></span></div>
+              <label>
+                <span>Age</span>
+                <input type="number" name="age" min="10" max="100" value="18" required />
+              </label>
+
+              <label>
+                <span>Gender</span>
+                <select name="gender">
+                  <option value="Male">Male</option>
+                  <option value="Female" selected>Female</option>
+                </select>
+              </label>
+
+              <label class="full-width">
+                <span>Country</span>
+                <input type="text" name="country" value="India" required />
+              </label>
+
+              <label>
+                <span>Academic level</span>
+                <select name="academic_level">
+                  <option value="Undergraduate" selected>Undergraduate</option>
+                  <option value="Graduate">Graduate</option>
+                  <option value="High School">High School</option>
+                </select>
+              </label>
+
+              <div class="form-section-label"><span>Your digital habits</span><span class="form-section-line"></span></div>
+              <label>
+                <span>Most used platform</span>
+                <select name="most_used_platform">
+                  <option value="Instagram" selected>Instagram</option>
+                  <option value="Facebook">Facebook</option>
+                  <option value="LinkedIn">LinkedIn</option>
+                  <option value="Twitter">Twitter</option>
+                  <option value="YouTube">YouTube</option>
+                  <option value="TikTok">TikTok</option>
+                  <option value="WhatsApp">WhatsApp</option>
+                  <option value="Snapchat">Snapchat</option>
+                  <option value="LINE">LINE</option>
+                  <option value="KakaoTalk">KakaoTalk</option>
+                  <option value="VKontakte">VKontakte</option>
+                  <option value="WeChat">WeChat</option>
+                </select>
+              </label>
+
+              <label>
+                <span>Purpose of use</span>
+                <select name="purpose_of_use">
+                  <option value="Education" selected>Education</option>
+                  <option value="Networking">Networking</option>
+                  <option value="Entertainment">Entertainment</option>
+                  <option value="News">News</option>
+                </select>
+              </label>
+
+              <label>
+                <span>Daily social media use <small>(hours)</small></span>
+                <input type="number" name="avg_daily_usage_hours" min="0" max="24" step="0.1" value="4.5" required />
+              </label>
+
+              <label>
+                <span>Daily phone unlocks</span>
+                <input type="number" name="daily_unlocks" min="0" step="1" value="55" required />
+              </label>
+
+              <div class="form-section-label"><span>Your daily balance</span><span class="form-section-line"></span></div>
+              <label>
+                <span>Study time <small>(hours/day)</small></span>
+                <input type="number" name="study_hours" min="0" max="24" step="0.1" value="3" required />
+              </label>
+
+              <label>
+                <span>Physical activity <small>(hours/day)</small></span>
+                <input type="number" name="physical_activity_hours" min="0" max="24" step="0.1" value="1.5" required />
+              </label>
+
+              <label>
+                <span>Sleep <small>(hours/night)</small></span>
+                <input type="number" name="sleep_hours_per_night" min="0" max="24" step="0.1" value="7" required />
+              </label>
+
+              <label>
+                <span>Stress level</span>
+                <select name="stress_level">
+                  <option value="Low">Low</option>
+                  <option value="Medium" selected>Medium</option>
+                  <option value="High">High</option>
+                  <option value="Very High">Very High</option>
+                </select>
+              </label>
+
+              <button type="submit" class="primary-btn" id="predict-button">
+                <span class="button-label">Generate my wellbeing insight</span>
+                <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3.5 10h12m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <p class="form-note"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 2.5 3.8 5v4.3c0 4 2.6 6.8 6.2 8.2 3.6-1.4 6.2-4.2 6.2-8.2V5L10 2.5Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M7.4 10 9.1 11.7l3.5-3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg> Your information is only used to generate this estimate.</p>
+            </form>
+          </section>
+
+          <aside class="panel result-panel" aria-labelledby="assessment-title">
+            <div class="section-heading result-heading">
+              <div>
+                <p class="section-kicker">YOUR WELLBEING SNAPSHOT</p>
+                <h2 id="assessment-title">Your assessment</h2>
+              </div>
+              <span class="assessment-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M3 12h4l2.2-5 4.1 10 2.3-5H21" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </div>
+
+            <div class="score-card">
+              <div class="score-ring" id="score-ring" role="img" aria-label="No wellbeing score yet">
+                <div class="score-ring-inner">
+                  <span>YOUR SCORE</span>
+                  <strong id="score-value">—</strong>
+                  <small>out of 10</small>
+                </div>
+              </div>
+
+              <div class="score-meta">
+                <span class="meta-label">YOUR RESULT</span>
+                <h3 id="score-label">Ready when you are</h3>
+                <p id="score-summary">Complete your check-in to see a personalized estimate.</p>
+              </div>
+            </div>
+
+            <div class="meter-wrap">
+              <div class="meter-header">
+                <span>Score range</span>
+                <span id="meter-value">— <small>/ 10</small></span>
+              </div>
+              <div class="meter-track" role="progressbar" aria-label="Wellbeing score" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0">
+                <div id="meter-fill" class="meter-fill"></div>
+              </div>
+              <div class="meter-scale"><span>0</span><span>10</span></div>
+            </div>
+
+            <div class="insight-box" id="insight-box" aria-live="polite">
+              <span class="insight-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M12 3.5a7 7 0 0 0-4.5 12.4c.8.7 1.3 1.6 1.4 2.6h6.2c.1-1 .6-1.9 1.4-2.6A7 7 0 0 0 12 3.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9.5 21h5m-4.5-2.5h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+              </span>
+              <div>
+                <h4>A gentle reminder</h4>
+                <p id="insight-message">Your wellbeing is more than a number. This estimate is a starting point for reflection.</p>
+              </div>
+            </div>
+
+            <div class="support-note">
+              <span class="support-dot"></span>
+              <p>This AI-generated estimate is for informational purposes only and is not a clinical diagnosis.</p>
+            </div>
+            <p id="status-message" class="status-message" role="status" aria-live="polite">Ready for your check-in</p>
+          </aside>
+        </div>
+      </main>
+      <footer class="page-footer">
+        <span><span class="footer-heart">♥</span> Take care of your mind, one day at a time.</span>
+        <span>MindCare AI <span class="footer-separator">·</span> Student wellbeing project</span>
+      </footer>
+    </div>
+
+    <script src="/static/script.js"></script>
+  </body>
+</html>
