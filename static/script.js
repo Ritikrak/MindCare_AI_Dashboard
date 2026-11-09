@@ -13,6 +13,8 @@ const meterTrack = document.querySelector('.meter-track');
 const scoreRing = document.getElementById('score-ring');
 const headerStatusLabel = headerStatus.querySelector('.status-label');
 
+const API_BASE_URL = 'https://mindcare-ai-dashboard.onrender.com';
+
 const getInterpretation = (score) => {
   if (score < 4) {
     return {
